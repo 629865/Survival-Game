@@ -35,6 +35,10 @@ public class Character {
         color = Color.BLUE;
         size = 20;
         name = "enemy";
+        name = "enemy2";
+        name = "enemy3";
+        name = "enemy4";
+        name = "enemy5";
     }
     
     public Character(int x, int y, Color color, int size, String name) {
@@ -140,13 +144,6 @@ public class Character {
     public void reverseY(){
         //TODO Implement this method
         dy = -dy;
-    }
-    
-    //Private Methods
-    private void grow() {
-        
-       //size = ( (int) (Math.random()*10) - 4);
-        size *= 1.05;
     }
 
 }

@@ -30,6 +30,10 @@ public class Space extends JPanel {
     private Enemy enemy;
     private Timer timer;
     int score;
+    private Enemy enemy2;
+    private Enemy enemy3;
+    private Enemy enemy4;
+    private Enemy enemy5;
         
     public Space() {
         super();
@@ -37,6 +41,11 @@ public class Space extends JPanel {
         marginY = 10;
         hero = new Hero(600, 480, Color.YELLOW, 20, "Dude");
         enemy = new Enemy(50, 50, Color.RED, 20, "Enemy");
+        enemy2 = new Enemy(100, 50, Color.RED, 20, "Enemy");
+        enemy3 = new Enemy(200, 50, Color.RED, 20, "Enemy");
+        enemy4 = new Enemy(50, 100, Color.RED, 20, "Enemy");
+        enemy5 = new Enemy(50, 200, Color.RED, 20, "Enemy");
+        
         timer = new Timer();
         timer.scheduleAtFixedRate(new ScheduleTask(), 100, 1000/20);
         score = 0;
@@ -55,6 +64,11 @@ public class Space extends JPanel {
         
         hero.draw(g);
         enemy.draw(g);
+        enemy2.draw(g);
+        enemy3.draw(g);
+        enemy4.draw(g);
+        enemy5.draw(g);
+        
         //g.dispose();     
     }
    
@@ -65,9 +79,21 @@ public class Space extends JPanel {
         public void run() {
             wallCollisions(hero);
             wallCollisions(enemy);
+            wallCollisions(enemy2);
+            wallCollisions(enemy3);
+            wallCollisions(enemy4);
+            wallCollisions(enemy5);
             heroVSEnemy();
+            heroVSEnemy2();
+            heroVSEnemy3();
+            heroVSEnemy4();
+            heroVSEnemy5();
             hero.update();
             enemy.update();
+            enemy2.update();
+            enemy3.update();
+            enemy4.update();
+            enemy5.update();
             repaint();
         }
     }
@@ -87,16 +113,31 @@ public class Space extends JPanel {
         }
         
     }
-    
     public void keyReleased(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            hero.setDX(0);
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            hero.setDX(0);
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_UP) {
+            hero.setDY(0);
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            hero.setDY(0);
+        }
+        
+    }
+    
+    public void enemyMovement(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-            hero.setDX(0);
+            enemy.setDX(4);
         if (e.getKeyCode() == KeyEvent.VK_LEFT)
-            hero.setDX(0);
+            enemy.setDX(-4);
         if (e.getKeyCode() == KeyEvent.VK_UP)
-            hero.setDY(0);
+            enemy.setDY(-4);
         if (e.getKeyCode() == KeyEvent.VK_DOWN)
-            hero.setDY(0);
+            enemy.setDY(4);
     }
     
     private void drawStars(Graphics g) {
@@ -130,6 +171,38 @@ public class Space extends JPanel {
         }
      }
 }
+        private void heroVSEnemy2() {
+        if (hero.getX()+ 40 >= enemy2.getX() && hero.getY() +40 >= enemy2.getY()) {
+            if (hero.getX() <= enemy2.getX() + 40 && hero.getY() <= enemy2.getY() + 40) {
+                enemy2.kill(hero);
+                enemy2.setX(-2000);
+        }
+     }
+}
+        private void heroVSEnemy3() {
+        if (hero.getX()+ 40 >= enemy3.getX() && hero.getY() +40 >= enemy3.getY()) {
+            if (hero.getX() <= enemy3.getX() + 40 && hero.getY() <= enemy3.getY() + 40) {
+                enemy3.kill(hero);
+                enemy3.setX(-2000);
+        }
+     }
+}
+        private void heroVSEnemy4() {
+        if (hero.getX()+ 40 >= enemy4.getX() && hero.getY() +40 >= enemy4.getY()) {
+            if (hero.getX() <= enemy4.getX() + 40 && hero.getY() <= enemy4.getY() + 40) {
+                enemy4.kill(hero);
+                enemy4.setX(-2000);
+        }
+     }
+}
+        private void heroVSEnemy5() {
+        if (hero.getX()+ 40 >= enemy5.getX() && hero.getY() +40 >= enemy5.getY()) {
+            if (hero.getX() <= enemy5.getX() + 40 && hero.getY() <= enemy5.getY() + 40) {
+                enemy5.kill(hero);
+                enemy5.setX(-2000);
+        }
+     }
+}
     
 private void wallCollisions (Character c) {
     //walls = this.getWidth(), this.getHeight(), 0
@@ -139,17 +212,6 @@ private void wallCollisions (Character c) {
     }
     if (c.getY() + c.getdy()< 0 || c.getY() + 20 >= this.getHeight() ) {
         c.reverseY();
-        char a = 'x';
-        int length = 10;
-
-        // creates char array with 10 elements
-        char[] chars = new char[length];
-
-        // fill each element of chars array with 'x'
-        Arrays.fill(chars, a);
-
-        // print out the repeated 'x'
-        System.out.println(String.valueOf(chars));
     }
 //TODO Implement this method
 

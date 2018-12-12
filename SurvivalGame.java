@@ -20,7 +20,7 @@ public class SurvivalGame {
      * @param args the command line arguments
      */
 public static void main(String[] args) {
-        JFrame j = new JFrame("Star Wars");
+        JFrame j = new JFrame("Sphere Survival");
         Space c = new Space();
         j.add(c);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,6 +36,7 @@ public static void main(String[] args) {
             public void keyReleased(KeyEvent e) {
                 c.keyReleased(e);
             }
+            
         });
     }
     

@@ -19,14 +19,15 @@ public class Enemy extends Character {
     public Enemy(){
     super();
 }
+    
     public Enemy(int x, int y, Color color, int size, String name){
         super(x,y,color,size,name);
             }
     
     @Override
     public void update() {
-            int dx = (int) (Math.random()*10) - 4;
-            int dy = (int) (Math.random()*10) - 4;
+            int dx = (int) (2);
+            int dy = (int) (2);
             super.move(dx,dy);
     }
     public void draw(Graphics g) {
@@ -34,4 +35,5 @@ public class Enemy extends Character {
         g.fillOval(super.getX(), super.getY(), super.getSize()+80, super.getSize()+80);
         
     }
+    
 }

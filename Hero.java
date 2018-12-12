@@ -55,9 +55,6 @@ public Hero(int x, int y, Color color, int size, String name) {
     }
     
     //Private Methods
-    private void grow() {
-        
-    }
     
     private void canTeleport() {
         
