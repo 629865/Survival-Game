@@ -112,6 +112,7 @@ public class Character {
     public void draw(Graphics g) {
         g.setColor(color);
         g.fillRect(x, y, size, size);
+        
     }
     
     public void kill(Character c) {

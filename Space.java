@@ -83,6 +83,7 @@ public class Space extends JPanel {
             wallCollisions(enemy3);
             wallCollisions(enemy4);
             wallCollisions(enemy5);
+            wallCollisionsCircle(enemy);
             heroVSEnemy();
             heroVSEnemy2();
             heroVSEnemy3();
@@ -211,6 +212,19 @@ private void wallCollisions (Character c) {
         c.reverseX();
     }
     if (c.getY() + c.getdy()< 0 || c.getY() + 20 >= this.getHeight() ) {
+        c.reverseY();
+    }
+//TODO Implement this method
+
+
+}
+private void wallCollisionsCircle (Character c) {
+    //walls = this.getWidth(), this.getHeight(), 0
+    //where the hero is = hero.getX(), hero.getY()
+    if (c.getX() + c.getdx() < 100 || c.getX() + 100 >= this.getWidth()+100 ) {
+        c.reverseX();
+    }
+    if (c.getY() + c.getdy() < 100 || c.getY() + 100 >= this.getHeight()+100 ) {
         c.reverseY();
     }
 //TODO Implement this method
