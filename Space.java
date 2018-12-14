@@ -52,6 +52,7 @@ public class Space extends JPanel {
         
         
         
+        
     }
     
     @Override
@@ -78,12 +79,16 @@ public class Space extends JPanel {
         @Override
         public void run() {
             wallCollisions(hero);
-            wallCollisions(enemy);
-            wallCollisions(enemy2);
-            wallCollisions(enemy3);
-            wallCollisions(enemy4);
-            wallCollisions(enemy5);
+           //wallCollisions(enemy);
+           //wallCollisions(enemy2);
+           //wallCollisions(enemy3);
+           //wallCollisions(enemy4);
+           //wallCollisions(enemy5);
             wallCollisionsCircle(enemy);
+            wallCollisionsCircle(enemy2);
+            wallCollisionsCircle(enemy3);
+            wallCollisionsCircle(enemy4);
+            wallCollisionsCircle(enemy5);
             heroVSEnemy();
             heroVSEnemy2();
             heroVSEnemy3();
@@ -130,16 +135,6 @@ public class Space extends JPanel {
         
     }
     
-    public void enemyMovement(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-            enemy.setDX(4);
-        if (e.getKeyCode() == KeyEvent.VK_LEFT)
-            enemy.setDX(-4);
-        if (e.getKeyCode() == KeyEvent.VK_UP)
-            enemy.setDY(-4);
-        if (e.getKeyCode() == KeyEvent.VK_DOWN)
-            enemy.setDY(4);
-    }
     
     private void drawStars(Graphics g) {
         int x = 0;
@@ -218,15 +213,26 @@ private void wallCollisions (Character c) {
 
 
 }
-private void wallCollisionsCircle (Character c) {
+private boolean wallCollisionsCircle (Character c) {
     //walls = this.getWidth(), this.getHeight(), 0
     //where the hero is = hero.getX(), hero.getY()
-    if (c.getX() + c.getdx() < 100 || c.getX() + 100 >= this.getWidth()+100 ) {
+    //left
+    if (c.getX() + c.getdx() < 0){
         c.reverseX();
     }
-    if (c.getY() + c.getdy() < 100 || c.getY() + 100 >= this.getHeight()+100 ) {
+    //right
+        if (c.getX() + 20 >= this.getWidth() ) {           
+        c.reverseX();
+}
+    //top
+    if (c.getY() + c.getdy() < 0) {
+c.reverseY();
+}
+//bottom
+if (c.getY() + 20 >= this.getHeight() ) {
         c.reverseY();
     }
+return true;
 //TODO Implement this method
 
 
