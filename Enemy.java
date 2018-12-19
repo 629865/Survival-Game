@@ -22,12 +22,13 @@ public class Enemy extends Character {
     
     public Enemy(int x, int y, Color color, int size, String name){
         super(x,y,color,size,name);
+        dx = 2;
+        dy = 2;
             }
     
     @Override
     public void update() {
-            int dx = (int) (2);
-            int dy = (int) (2);
+            
             super.move(dx,dy);
     }
     public void draw(Graphics g) {

@@ -34,22 +34,25 @@ public class Space extends JPanel {
     private Enemy enemy3;
     private Enemy enemy4;
     private Enemy enemy5;
+    private Enemy enemy6;
+    private Enemy enemy7;
         
     public Space() {
         super();
         marginX = 10;
         marginY = 10;
         hero = new Hero(600, 480, Color.YELLOW, 20, "Dude");
-        enemy = new Enemy(50, 50, Color.RED, 20, "Enemy");
-        enemy2 = new Enemy(100, 50, Color.RED, 20, "Enemy");
-        enemy3 = new Enemy(200, 50, Color.RED, 20, "Enemy");
-        enemy4 = new Enemy(50, 100, Color.RED, 20, "Enemy");
-        enemy5 = new Enemy(50, 200, Color.RED, 20, "Enemy");
+        enemy = new Enemy(700, 10, Color.RED, 20, "Enemy");
+        enemy2 = new Enemy(250, 70, Color.RED, 20, "Enemy");
+        enemy3 = new Enemy(1000, 300, Color.RED, 20, "Enemy");
+        enemy4 = new Enemy(850, 500, Color.RED, 20, "Enemy");
+        enemy5 = new Enemy(200, 200, Color.RED, 20, "Enemy");
+        enemy6 = new Enemy(200, 400, Color.RED, 20, "Enemy");
+        enemy7 = new Enemy(50, 100, Color.RED, 20, "Enemy");
         
         timer = new Timer();
         timer.scheduleAtFixedRate(new ScheduleTask(), 100, 1000/20);
         score = 0;
-        
         
         
         
@@ -69,6 +72,8 @@ public class Space extends JPanel {
         enemy3.draw(g);
         enemy4.draw(g);
         enemy5.draw(g);
+        enemy6.draw(g);
+        enemy7.draw(g);
         
         //g.dispose();     
     }
@@ -89,17 +94,23 @@ public class Space extends JPanel {
             wallCollisionsCircle(enemy3);
             wallCollisionsCircle(enemy4);
             wallCollisionsCircle(enemy5);
+            wallCollisionsCircle(enemy6);
+            wallCollisionsCircle(enemy7);
             heroVSEnemy();
             heroVSEnemy2();
             heroVSEnemy3();
             heroVSEnemy4();
             heroVSEnemy5();
+            heroVSEnemy6();
+            heroVSEnemy7();
             hero.update();
             enemy.update();
             enemy2.update();
             enemy3.update();
             enemy4.update();
             enemy5.update();
+            enemy6.update();
+            enemy7.update();
             repaint();
         }
     }
@@ -163,6 +174,7 @@ public class Space extends JPanel {
         if (hero.getX()+ 40 >= enemy.getX() && hero.getY() +40 >= enemy.getY()) {
             if (hero.getX() <= enemy.getX() + 40 && hero.getY() <= enemy.getY() + 40) {
                 enemy.kill(hero);
+                timer.cancel();
                 enemy.setX(-2000);
         }
      }
@@ -171,6 +183,7 @@ public class Space extends JPanel {
         if (hero.getX()+ 40 >= enemy2.getX() && hero.getY() +40 >= enemy2.getY()) {
             if (hero.getX() <= enemy2.getX() + 40 && hero.getY() <= enemy2.getY() + 40) {
                 enemy2.kill(hero);
+                timer.cancel();
                 enemy2.setX(-2000);
         }
      }
@@ -179,6 +192,7 @@ public class Space extends JPanel {
         if (hero.getX()+ 40 >= enemy3.getX() && hero.getY() +40 >= enemy3.getY()) {
             if (hero.getX() <= enemy3.getX() + 40 && hero.getY() <= enemy3.getY() + 40) {
                 enemy3.kill(hero);
+                timer.cancel();
                 enemy3.setX(-2000);
         }
      }
@@ -187,6 +201,7 @@ public class Space extends JPanel {
         if (hero.getX()+ 40 >= enemy4.getX() && hero.getY() +40 >= enemy4.getY()) {
             if (hero.getX() <= enemy4.getX() + 40 && hero.getY() <= enemy4.getY() + 40) {
                 enemy4.kill(hero);
+                timer.cancel();
                 enemy4.setX(-2000);
         }
      }
@@ -195,12 +210,31 @@ public class Space extends JPanel {
         if (hero.getX()+ 40 >= enemy5.getX() && hero.getY() +40 >= enemy5.getY()) {
             if (hero.getX() <= enemy5.getX() + 40 && hero.getY() <= enemy5.getY() + 40) {
                 enemy5.kill(hero);
+                timer.cancel();
                 enemy5.setX(-2000);
         }
      }
 }
+        private void heroVSEnemy6() {
+        if (hero.getX()+ 40 >= enemy6.getX() && hero.getY() +40 >= enemy6.getY()) {
+            if (hero.getX() <= enemy6.getX() + 40 && hero.getY() <= enemy6.getY() + 40) {
+                enemy6.kill(hero);
+                timer.cancel();
+                enemy6.setX(-2000);
+        }
+     }
+}
+        private void heroVSEnemy7() {
+        if (hero.getX()+ 40 >= enemy7.getX() && hero.getY() +40 >= enemy7.getY()) {
+            if (hero.getX() <= enemy7.getX() + 40 && hero.getY() <= enemy7.getY() + 40) {
+                enemy7.kill(hero);
+                timer.cancel();
+                enemy7.setX(-2000);
+        }
+     }
+}
     
-private void wallCollisions (Character c) {
+private void wallCollisions(Character c) {
     //walls = this.getWidth(), this.getHeight(), 0
     //where the hero is = hero.getX(), hero.getY()
     if (c.getX() + c.getdx()< 0 || c.getX() + 20 >= this.getWidth() ) {
@@ -213,28 +247,27 @@ private void wallCollisions (Character c) {
 
 
 }
-private boolean wallCollisionsCircle (Character c) {
+private void wallCollisionsCircle(Character c) {
     //walls = this.getWidth(), this.getHeight(), 0
     //where the hero is = hero.getX(), hero.getY()
     //left
-    if (c.getX() + c.getdx() < 0){
+    System.out.println("checking for collision");
+        if(c.x+c.dx<0)
         c.reverseX();
-    }
-    //right
-        if (c.getX() + 20 >= this.getWidth() ) {           
-        c.reverseX();
-}
+    
     //top
-    if (c.getY() + c.getdy() < 0) {
-c.reverseY();
-}
-//bottom
-if (c.getY() + 20 >= this.getHeight() ) {
+        if(c.y+c.dy<0)            
         c.reverseY();
-    }
-return true;
-//TODO Implement this method
 
+    //right
+     if (c.getX() + 100 >= this.getWidth() ){ 
+        c.reverseX();
+     }
+//bottom
+if (c.getY() + 100 >= this.getHeight() ) {
+        c.reverseY();
+}
+//TODO Implement this method
 
 }
 }

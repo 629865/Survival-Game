@@ -24,7 +24,7 @@ public static void main(String[] args) {
         Space c = new Space();
         j.add(c);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        j.setSize(1200, 960);
+        j.setSize(1100, 840);
         j.setVisible(true);
         j.setLocationRelativeTo(null);
         j.addKeyListener(new KeyAdapter() {

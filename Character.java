@@ -18,13 +18,13 @@ import java.awt.Graphics;
  */
 public class Character {
     //Fields (Variables)
-    private int x;
-    private int y;
-    private int dx; 
-    private int dy;
-    private Color color;
-    private int size;
-    private String name;
+    public int x;
+    public int y;
+    public int dx; 
+    public int dy;
+    public Color color;
+    public int size;
+    public String name;
     
     //Constructor
     public Character() { //no-args
@@ -39,6 +39,8 @@ public class Character {
         name = "enemy3";
         name = "enemy4";
         name = "enemy5";
+        name = "enemy6";
+        name = "enemy7";
     }
     
     public Character(int x, int y, Color color, int size, String name) {
@@ -117,7 +119,7 @@ public class Character {
     
     public void kill(Character c) {
         c.setSize(0);
-    
+    c.setX(3000);
     }
      
     public void move(int dx, int dy) {
@@ -145,6 +147,7 @@ public class Character {
     public void reverseY(){
         //TODO Implement this method
         dy = -dy;
+        move(dx,2 * dy);
     }
 
 }
